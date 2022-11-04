@@ -1,0 +1,20 @@
+{
+  "name": "tijuca_pizza_api",
+  "version": "1.0.0",
+  "description": "Tijuca_Pizza_API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VRegison/Tijuca_Pizza_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VRegison/Tijuca_Pizza_API/issues"
+  },
+  "homepage": "https://github.com/VRegison/Tijuca_Pizza_API#readme"
+}
