@@ -1,6 +1,8 @@
 const express = require('express');
+const { Router } = require("express");
+const User = require('./src/controllers/user');
+const router = Router();
 const app = express()
-
 const port = 8080
 
 //PEGAR TODOS OS REGISTROS
@@ -27,6 +29,11 @@ app.delete("/:id", (req, res) => {
     const id = req.params.id
     res.json({ mensagem: `deletar somente o registro com id: ${id}` })
 })
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+router.post("/cadastrar", User)
+app.use(router)
 
 app.listen(port, () => {
     console.log('Servidor rodando !!!!')
