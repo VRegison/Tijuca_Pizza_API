@@ -25,7 +25,7 @@ const produto = sequelize.define(
         type: DataTypes.INTEGER,
         },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = produto

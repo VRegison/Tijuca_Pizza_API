@@ -13,7 +13,7 @@ const categoria = sequelize.define(
       type: DataTypes.STRING,
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = categoria;

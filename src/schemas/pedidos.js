@@ -28,7 +28,7 @@ const pedidos = sequelize.define(
       type: DataTypes.TEXT,
     },
   },
-  { timestamp: true }
-);
+  { timestamps: true }
+);  
 
 module.exports = pedidos;

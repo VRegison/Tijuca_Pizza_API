@@ -19,7 +19,7 @@ const item = sequelize.define(
       type: DataTypes.INTEGER,
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = item;

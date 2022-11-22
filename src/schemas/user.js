@@ -2,11 +2,11 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/configDataBase");
 
 const User = sequelize.define(
-  "user",
+  "users",
   {
     idUser: {
       primaryKey: true,
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
     },
     nomeUser: {
@@ -22,7 +22,7 @@ const User = sequelize.define(
       type: DataTypes.INTEGER,
     },
   },
-  { timestamp: true }
+  { timestamps: false }
 );
 
 module.exports = User

@@ -17,7 +17,7 @@ async function Conection() {
     await sequelize.authenticate();
     console.log("Banco conectado");
   } catch (error) {
-    console.log(error.message);
+    console.log(error.message)
   }
 }
 

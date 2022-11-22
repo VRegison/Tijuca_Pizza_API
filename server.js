@@ -1,12 +1,19 @@
-const express = require("express");
+const express = require('express');
+const router = require("./src/routes/login")
 const sequelize = require("./src/config/configDataBase");
-const app = express();
+const login = require("./src/controllers/login")
+const Create = require("./src/controllers/cadastro")
+const app = express()
+const port = 8080
 
-const port = 3000
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/", function(req, res){
-    res.send("tarara")
-})
+router.post("/login", login)
+router.post("/create", Create)
+app.use(router)
+
+
 
 app.listen(
   port,
@@ -15,3 +22,4 @@ app.listen(
     DB: sequelize.config.host,
   })
 );
+
