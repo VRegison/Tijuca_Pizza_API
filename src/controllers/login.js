@@ -8,7 +8,7 @@ async function login(req, res, next){
     const response = await FindUser(req.body);
     console.log(response);
     if (response == null) {
-    
+
       return res.status(401).send({ message: "não encontrado" });
     } else {
       return res.status(200).send({
@@ -22,14 +22,5 @@ async function login(req, res, next){
     console.log("deu errado");
   }
 }
-
-// exports.tokenLogin = async(req, res, next) => {
-//   if (req.body.email === "talita@gmail.com" && req.body.senha === "talita123") {
-//     const token = await jwt.sign({ idUser: 69 }, SECRET, { expiresIn: 300 });
-//     return res.json({ auth: true, token });
-//   }
-//   res.status(401).end();
-//   console.log("erro colega");
-// }
 
 module.exports = login

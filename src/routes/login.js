@@ -7,7 +7,10 @@ const Create = require("../controllers/cadastro");
 const jwt = require("jsonwebtoken");
 const router = Router();
    
+//User
 router.post("/login", loginValidation, Login);  
 router.post("/create", cadValidation, Create);
 
+//Produtos
+router.post("/produtos",)
 module.exports = router;
