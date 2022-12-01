@@ -15,7 +15,7 @@ async function Create(req, res, next) {
     }
     
     const create = await CreateUser(req.body);
-    console.log(user, "TEst")
+    console.log(user)
 
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });

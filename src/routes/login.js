@@ -10,15 +10,17 @@ const cadValidation = require("../../validations/cad");
 const Create = require("../controllers/cadastro");
 
 //produto rotas
-const { createProd, listProd } = require("../controllers/produtos");
+const {createProduto} = require("../controllers/produtos");
+const {listarProduto} = require("../controllers/produtos");
+const {updateProduto} = require("../controllers/produtos");
 
 //User
 router.post("/login", loginValidation, Login);
 router.post("/create", cadValidation, Create);
 
 //Produtos
-router.post("/produtos", (req, res)=>{
-    createProd});
-router.get("/produtos", (req, res)=>{listProd})
-;
+router.post("/produtos", createProduto);
+router.get("/listarProdutos", listarProduto);
+router.patch("/updateProdutos/:idProduto", updateProduto);
+
 module.exports = router;

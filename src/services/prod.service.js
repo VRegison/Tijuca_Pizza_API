@@ -13,35 +13,23 @@ exports.createProd = async({idCategoria, nomeProduto, valor, descricao, statusPr
   return createProd;
 };
 
-//excluir produto
-exports.deleteProd = async({idCategoria,
-  nomeProduto,
-  valor,
-  descricao,
-  statusProduto})=> {
-    const deleteProd = await produto.destroy({ 
+//editar por parâmetro
+exports.updateProd = async({idProduto},{idCategoria, nomeProduto, valor, descricao, statusProduto,})=> {
+    const findProd = await produto.findOne(id)
+    console.log(findProd)
+    const updateProd = await findProd.update({ 
     idCategoria: idCategoria,
     nomeProduto: nomeProduto,
     valor: valor,
     descricao: descricao,
     statusProduto: statusProduto,
   });
-  return deleteProd;
+  return updateProd;
   };
 
 //listar produtos
-exports.listProd = async({idCategoria,
-  nomeProduto,
-  valor,
-  descricao,
-  statusProduto})=> {
-    const listProd = await produto.findAll({ 
-    idCategoria: idCategoria,
-    nomeProduto: nomeProduto,
-    valor: valor,
-    descricao: descricao,
-    statusProduto: statusProduto,
-  });
-  return listProd;
+exports.listProd = async() =>{
+    const listProd = await produto.findAll();
+    return listProd;
   }
 
