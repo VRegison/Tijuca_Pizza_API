@@ -1,6 +1,6 @@
 //const User = require("../schemas/user");
 const jwt = require("jsonwebtoken");
-const FindUser = require("../services/user.service");
+const {FindUser} = require("../services/user.service");
 require("dotenv").config()
 
 async function login(req, res, next){

@@ -6,10 +6,11 @@ const produto = sequelize.define(
   {
     idProduto: {
       primaryKey: true,
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
     },
     idCategoria: {
+      allowNull: true,
       type: DataTypes.INTEGER,
     },
     nomeProduto: {
@@ -25,7 +26,7 @@ const produto = sequelize.define(
         type: DataTypes.INTEGER,
         },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 module.exports = produto

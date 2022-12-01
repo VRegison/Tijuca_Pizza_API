@@ -14,5 +14,5 @@ exports.FindEmail = async ( email ) =>  {
     where: {email: email},
   });
   console.log(findUser, "findUser")
-  return findUser.toJSON();
+  return findUser;
 }
