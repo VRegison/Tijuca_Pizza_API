@@ -10,12 +10,12 @@ async function Create(req, res, next) {
       console.log("caiu no if")
       next;
     } else {
+      const create = await CreateUser(req.body);
       res.status(201).send({ message: "Usuário criado com sucesso" });
       console.log("caiu no else")
     }
     
-    const create = await CreateUser(req.body);
-    console.log(user)
+    // console.log(user)
 
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });

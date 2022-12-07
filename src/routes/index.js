@@ -19,8 +19,8 @@ router.post("/login", loginValidation, Login);
 router.post("/create", cadValidation, Create);
 
 //Produtos
-router.post("/produtos", createProduto);
+router.post("/createProdutos", createProduto);
 router.get("/listarProdutos", listarProduto);
-router.patch("/updateProdutos/:idProduto", updateProduto);
+router.patch("/updateProdutos/:id", updateProduto);
 
 module.exports = router;
