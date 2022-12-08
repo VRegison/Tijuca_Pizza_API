@@ -1,4 +1,4 @@
-const { Sequelize, Datatypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/configDataBase");
 
 const pedidos = sequelize.define(
@@ -6,7 +6,7 @@ const pedidos = sequelize.define(
   {
     idPedido: {
       primaryKey: true,
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
     },
     idUser: {
@@ -22,13 +22,14 @@ const pedidos = sequelize.define(
       type: DataTypes.INTEGER,
     },
     data: {
+      allowNull: true,
       type: DataTypes.DATE,
     },
     observacao: {
       type: DataTypes.TEXT,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );  
 
 module.exports = pedidos;

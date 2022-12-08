@@ -7,7 +7,6 @@ const {
 
 exports.createProduto = async (req, res, next) => {
   try {
-    console.log("aquii");
     const createProduto = await createProd(req.body);
     res.status(201).send({ message: "Produto criado com sucesso" });
   } catch (error) {
@@ -19,7 +18,7 @@ exports.listarProduto = async (req, res, next) => {
   try {
     const response = await listProd();
 
-    res.status(200).send({ produtos: response });
+    res.status(200).send({ produtos : response });
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }

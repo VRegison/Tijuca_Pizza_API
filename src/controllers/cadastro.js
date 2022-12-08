@@ -7,15 +7,11 @@ async function Create(req, res, next) {
     
     if (user) {
       res.status(400).send({ message: "e-mail já cadastrado" })
-      console.log("caiu no if")
       next;
     } else {
       const create = await CreateUser(req.body);
       res.status(201).send({ message: "Usuário criado com sucesso" });
-      console.log("caiu no else")
     }
-    
-    // console.log(user)
 
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
