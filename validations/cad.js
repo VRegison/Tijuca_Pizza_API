@@ -1,35 +1,52 @@
-const Joi = require("joi");
+const Joi = require('joi');
+const joiTranslation = require('joi-translation-pt-br')
 
 async function cadValidation(req, res, next) {
+
   try {
-    const cad = Joi.object({
-      nomeUser: Joi.string().empty().required().messages({
-        "string.empty": `"nomeUser" não pode ser vazio`,
-        "any.required": `"nomeUser" é obrigatório`
+
+    const cad = await Joi.object({
+
+      nomeUser: Joi.string().empty().min(4).max(10).required().messages(
+        {
+          "string.empty": `"nomeUser" cannot be empty`,
+          "any.required": `"nomeUser" is required`,
+        }
+      ),
+
+      email: Joi.string().email().empty().required().messages(
+        {
+          "string.empty": `"email" cannot be empty`,
+          "any.required": `"email" is required`,
+        }
+      ),
+
+      senha: Joi.string().min(4).max(10).empty().required().messages( {
+        "string.empty": `"senha" cannot be empty`,
+        "any.required": `"senha" is required`,
       }),
-      email: Joi.string().email().empty().required().messages({
-        "string.empty": `"email" não pode ser vazio`,
-        "any.required": `"email" é obrigatório`
-      }),
-      senha: Joi.string().min(4).max(12).empty().required().messages({
-        "string.empty": `"senha" não pode ser vazio`,
-        "any.required": `"senha" é obrigatório`
-      }),
-      status: Joi.number().integer().max(2).empty().required().messages({
-        "string.empty": `"status" não pode ser vazio`,
-        "any.required": `"status" é obrigatório`
-      }),
+
+      status: Joi.number().integer().max(2).empty().required().messages(
+        {
+          "number.empty": `"status" cannot be empty`,
+          "any.required": `"status" is required`,
+        }
+      ),
+
     });
 
-    const {error} = cad.validate(req.body)
-    if(error){
-        console.log(error)
-        throw Error(error)
+    const validCad = cad.validate(req.body);
+
+    if(!validCad){
+      throw Error(error);
+      console.log("passou pelo if");
     }
     
     return next();
+
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
+    console.log(error)
   }
 }
 

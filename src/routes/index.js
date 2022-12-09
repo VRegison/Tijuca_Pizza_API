@@ -9,14 +9,14 @@ const Login = require("../controllers/login");
 const cadValidation = require("../../validations/cad");
 const Create = require("../controllers/cadastro");
 
-//produto rotas
-const {createProduto} = require("../controllers/produtos");
-const {listarProduto} = require("../controllers/produtos");
-const {updateProduto} = require("../controllers/produtos");
-const {listOneProd} = require("../controllers/produtos");
+//VAR produto rotas
+const { createProduto, listOneProd, updateProduto, listarProduto } = require("../controllers/produtos");
 
-//categoria rotas
-const {createCategory, deleteCategory, listCategory} = require("../controllers/categoria")
+//VAR categoria rotas
+const { createCategory, deleteCategory, listCategory } = require("../controllers/categoria")
+
+//VAR mesa rotas
+const createMesa = require ("../controllers/mesa")
 
 //User
 router.post("/login", loginValidation, Login);
@@ -32,5 +32,8 @@ router.patch("/updateProdutos/:id", updateProduto);
 router.post("/cadastrarCategoria", createCategory)
 router.get("/listarCategorias", listCategory)
 router.delete("/deletarCategoria/:idCategoria", deleteCategory)
+
+//Mesas
+router.post("/createMesa", createMesa)
 
 module.exports = router;
