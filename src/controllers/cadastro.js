@@ -1,5 +1,6 @@
 const CreateUser = require("../services/cad.service");
 const {FindEmail, FindUser} = require("../services/user.service")
+
 async function Create(req, res, next) {
   try {
     const user = await FindEmail(req.body.email)
