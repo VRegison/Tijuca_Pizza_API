@@ -4,9 +4,9 @@ const router = Router();
 const User = require("../config/configDataBase");
 
 //user rotas
+const cadValidation = require("../../validations/cad");
 const loginValidation = require("../../validations/login");
 const Login = require("../controllers/login");
-const cadValidation = require("../../validations/cad");
 const Create = require("../controllers/cadastro");
 
 //VAR produto rotas
