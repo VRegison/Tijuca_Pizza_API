@@ -24,6 +24,10 @@ const Create = require("../controllers/cadastro");
 const {createProduto} = require("../controllers/produtos");
 const {listarProduto} = require("../controllers/produtos");
 const {updateProduto} = require("../controllers/produtos");
+const {listOneProd} = require("../controllers/produtos");
+
+//categoria rotas
+const {createCategory, deleteCategory, listCategory} = require("../controllers/categoria")
 
 //User
 router.post("/login", loginValidation, Login);
@@ -33,5 +37,14 @@ router.post("/create", cadValidation, Create);
 router.post("/createProdutos",verifyJWT, createProduto);
 router.get("/listarProdutos", listarProduto);
 router.patch("/updateProdutos/:id",verifyJWT, updateProduto);
+router.get("/listarProduto/:idProduto", listOneProd)
+router.get("/listarProdutos", listarProduto);
+router.post("/createProdutos", createProduto);
+router.patch("/updateProdutos/:id", updateProduto);
+
+//Categoria
+router.post("/cadastrarCategoria", createCategory)
+router.get("/listarCategorias", listCategory)
+router.delete("/deletarCategoria/:idCategoria", deleteCategory)
 
 module.exports = router;
