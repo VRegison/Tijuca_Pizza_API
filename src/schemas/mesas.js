@@ -1,19 +1,20 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/configDataBase");
 
-const categoria = sequelize.define(
-  "categoria",
+const mesas = sequelize.define(
+  "mesas",
   {
-    idCategoria: {
+    idMesa: {
       primaryKey: true,
       allowNull: true,
       type: DataTypes.INTEGER,
     },
-    nomeCategoria: {
-      type: DataTypes.STRING,
+
+    statusMesa: {
+      type: DataTypes.INTEGER,
     },
   },
   { timestamps: false }
 );
 
-module.exports = categoria;
+module.exports = mesas;

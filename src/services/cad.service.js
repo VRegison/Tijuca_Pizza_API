@@ -1,7 +1,9 @@
 const user = require("../schemas/user");
 
 //Cria usuário
-async function CreateUser({ nomeUser, email, senha, status }) {
+
+exports.CreateUser = async ({ nomeUser, email, senha, status }) => {
+
   const create = await user.create({
     nomeUser: nomeUser,
     email: email,
@@ -9,6 +11,7 @@ async function CreateUser({ nomeUser, email, senha, status }) {
     status: status,
   });
   return create;
-}
+};
 
-module.exports = CreateUser
+//validação do status
+
