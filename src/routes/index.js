@@ -2,19 +2,7 @@ const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const router = Router();
 const User = require("../config/configDataBase");
-const SECRET = require('dotenv').config()
-
-//token
-
-function verifyJWT(req, res, next) {
-  const token = req.headers["x-acess-token"];
-  jwt.verify(token, SECRET, (error, decoded) => {
-    if (error) return res.status(401).end();
-
-    req.idUser = decoded.idUser;
-    next();
-  });
-}
+const SECRET = require("dotenv").config();
 
 //user rotas
 const loginValidation = require("../../validations/login");
@@ -33,6 +21,7 @@ const {
 const { createProduto } = require("../controllers/produtos");
 const { listarProduto } = require("../controllers/produtos");
 const { updateProduto } = require("../controllers/produtos");
+const verifyToken = require("../../validations/token.validation");
 
 //User
 router.post("/login", loginValidation, Login);
@@ -40,7 +29,7 @@ router.post("/create", cadValidation, Create);
 
 //Produtos
 router.post("/createProdutos", createProduto);
-router.get("/listarProdutos", verifyJWT, listarProduto);
+router.get("/listarProdutos", verifyToken, listarProduto);
 router.patch("/updateProdutos/:id", updateProduto);
 
 //Pedidos rotas
