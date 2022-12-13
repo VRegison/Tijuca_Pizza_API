@@ -10,7 +10,7 @@ const mesas = sequelize.define(
       type: DataTypes.INTEGER,
     },
 
-    status: {
+    statusMesa: {
       type: DataTypes.INTEGER,
     },
   },

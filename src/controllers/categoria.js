@@ -1,7 +1,5 @@
 const categoria = require("../schemas/categoria");
-const { createCat } = require("../services/cat.service");
-const { listCat } = require("../services/cat.service");
-const { deleteCat } = require("../services/cat.service")
+const { createCat, listCat, deleteCat } = require("../services/cat.service");
 
 //categoria
 
