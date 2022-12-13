@@ -28,9 +28,9 @@ router.post("/login", loginValidation, Login);
 router.post("/create", cadValidation, Create);
 
 //Produtos
-router.post("/createProdutos", createProduto);
+router.post("/createProdutos", verifyToken, createProduto);
 router.get("/listarProdutos", verifyToken, listarProduto);
-router.patch("/updateProdutos/:id", updateProduto);
+router.patch("/updateProdutos/:id", verifyToken, updateProduto);
 
 //Pedidos rotas
 router.post("/createPedidos", createPedido);
