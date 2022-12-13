@@ -9,18 +9,21 @@ async function login(req, res, next){
     console.log(response);
     if (response == null) {
 
-      return res.status(401).send({ message: "não encontrado" });
+      return res.status(401).send({ message: "user não encontrado" });
     } else {
       return res.status(200).send({
         message: "user encontrado",
         user: response.idUser,
+        auth: true,
         token: jwt.sign({ idUser: response.idUser }, process.env.SECRET, { expiresIn: 300 }),
       });
     }
+
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
     console.log("deu errado");
   }
+  
 }
 
 module.exports = login

@@ -11,7 +11,7 @@ async function cadValidation(req, res, next) {
         "string.empty": `"email" não pode ser vazio`,
         "any.required": `"email" é obrigatório`
       }),
-      senha: Joi.string().min(4).max(12).empty().required().messages({
+      senha: Joi.string().min(4).max(10).empty().required().messages({
         "string.empty": `"senha" não pode ser vazio`,
         "any.required": `"senha" é obrigatório`
       }),
