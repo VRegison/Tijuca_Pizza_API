@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const router = Router();
 const User = require("../config/configDataBase");
+
 function verifyJWT(req, res, next){
     const token = req.headers['x-access-token']
     jwt.verify(token, process.env.SECRET, (err, decoded)=>{
@@ -35,16 +36,16 @@ router.post("/create", cadValidation, Create);
 
 //Produtos
 router.post("/createProdutos",verifyJWT, createProduto);
-router.get("/listarProdutos", listarProduto);
+router.get("/listarProdutos", verifyJWT, listarProduto);
 router.patch("/updateProdutos/:id",verifyJWT, updateProduto);
-router.get("/listarProduto/:idProduto", listOneProd)
-router.get("/listarProdutos", listarProduto);
-router.post("/createProdutos", createProduto);
-router.patch("/updateProdutos/:id", updateProduto);
+router.get("/listarProduto/:idProduto", verifyJWT, listOneProd)
+router.get("/listarProdutos", verifyJWT, listarProduto);
+router.post("/createProdutos",verifyJWT, createProduto);
+router.patch("/updateProdutos/:id", verifyJWT, updateProduto);
 
 //Categoria
-router.post("/cadastrarCategoria", createCategory)
-router.get("/listarCategorias", listCategory)
-router.delete("/deletarCategoria/:idCategoria", deleteCategory)
+router.post("/cadastrarCategoria", verifyJWT, createCategory)
+router.get("/listarCategorias", verifyJWT, listCategory)
+router.delete("/deletarCategoria/:idCategoria",verifyJWT, deleteCategory)
 
 module.exports = router;
