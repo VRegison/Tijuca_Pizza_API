@@ -1,19 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const router = Router();
-const User = require("../config/configDataBase");
-
-function verifyJWT(req, res, next){
-    const token = req.headers['x-access-token']
-    jwt.verify(token, process.env.SECRET, (err, decoded)=>{
-        if(err){
-            console.log("caiu aqui")            
-            return res.status(401).end()
-        } 
-        req.IdUser = decoded.IdUser
-        next()
-    })
-}
+const VerifyJWT = require("../../validations/token/tokenValidation")
 
 //user rotas
 const loginValidation = require("../../validations/login");
@@ -35,17 +23,17 @@ router.post("/login", loginValidation, Login);
 router.post("/create", cadValidation, Create);
 
 //Produtos
-router.post("/createProdutos",verifyJWT, createProduto);
-router.get("/listarProdutos", verifyJWT, listarProduto);
-router.patch("/updateProdutos/:id",verifyJWT, updateProduto);
-router.get("/listarProduto/:idProduto", verifyJWT, listOneProd)
-router.get("/listarProdutos", verifyJWT, listarProduto);
-router.post("/createProdutos",verifyJWT, createProduto);
-router.patch("/updateProdutos/:id", verifyJWT, updateProduto);
+router.post("/createProdutos",VerifyJWT, createProduto);
+router.get("/listarProdutos", VerifyJWT, listarProduto);
+router.patch("/updateProdutos/:id",VerifyJWT, updateProduto);
+router.get("/listarProduto/:idProduto", VerifyJWT, listOneProd)
+router.get("/listarProdutos", VerifyJWT, listarProduto);
+router.post("/createProdutos",VerifyJWT, createProduto);
+router.patch("/updateProdutos/:id", VerifyJWT, updateProduto);
 
 //Categoria
-router.post("/cadastrarCategoria", verifyJWT, createCategory)
-router.get("/listarCategorias", verifyJWT, listCategory)
-router.delete("/deletarCategoria/:idCategoria",verifyJWT, deleteCategory)
+router.post("/cadastrarCategoria", VerifyJWT, createCategory)
+router.get("/listarCategorias", VerifyJWT, listCategory)
+router.delete("/deletarCategoria/:idCategoria",VerifyJWT, deleteCategory)
 
 module.exports = router;
