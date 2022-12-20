@@ -26,7 +26,8 @@ const produto = sequelize.define(
         type: DataTypes.INTEGER,
         },
   },
-  { timestamps: false }
+  { timestamps: false },
+  { freezeTableName: true}
 );
 
 module.exports = produto

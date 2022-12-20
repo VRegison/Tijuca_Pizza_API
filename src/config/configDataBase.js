@@ -17,9 +17,13 @@ async function Conection() {
   try {
     await sequelize.authenticate();
     console.log("Banco conectado");
+
+
+
   } catch (error) {
     console.log(error.message)
   }
 }
+
 
 (module.exports = sequelize), Conection();

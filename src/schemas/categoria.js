@@ -6,14 +6,14 @@ const categoria = sequelize.define(
   {
     idCategoria: {
       primaryKey: true,
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.INTEGER,
     },
     nomeCategoria: {
       type: DataTypes.STRING,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 module.exports = categoria;
