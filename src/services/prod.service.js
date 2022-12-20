@@ -20,8 +20,7 @@ exports.createProd = async ({
 
 //editar por parâmetro
 exports.updateProd = async (
-  id,
-  { idCategoria, nomeProduto, valor, descricao, statusProduto }
+  id,{ idCategoria, nomeProduto, valor, descricao, statusProduto }
 ) => {
   const updateProd = produto.update(
     {
@@ -42,3 +41,23 @@ exports.listProd = async () => {
   const listProd = await produto.findAll();
   return listProd;
 };
+
+// listar por parametro
+exports.listOneProd = async (idProduto) => {
+  return produto.findByPk(idProduto);
+   
+};
+
+//sem repeticão
+
+exports.findNome = async (nomeProduto) => {
+
+  const findNome = await produto.findOne({
+    where: {nomeProduto: nomeProduto}, 
+  });
+  console.log(findNome, "findNome")
+  return findNome;
+}
+
+
+

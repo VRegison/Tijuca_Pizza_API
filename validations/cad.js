@@ -1,40 +1,39 @@
 const Joi = require("joi");
-const { messages } = require("joi-translation-pt-br");
 
-async function cadValidation(req, res, next) {
+async function ValidadeCad(req, res, next) {
   try {
-    const cad = Joi.object({
-      abortEarly: false,
-      messages : messages,
-      nomeUser: Joi.string().empty().required().messages({
-        "string.empty": `"nome" não pode ser vazio`,
-        "any.required": `"email" é obrigatório`,
+    const authSchema = Joi.object({
+      nomeUser: Joi.string().empty().required().min(4).max(12).messages({
+        "string.empty": `"Nome" não pode ser vazio`,
+        "any.required": `"Nome" campo obrigatório`,
+        "string.min": `"Nome" no mínimo 4 carateres`,
+        "string.max": `"Nome" no máximo 12 caracteres`,
       }),
-      email: Joi.string().email().empty().required().messages({
-        "string.empty": `"email" não pode ser vazio`,
-        "any.required": `"email" é obrigatório`,
+      email: Joi.string().empty().required().email().messages({
+        "string.empty": `"Email" não pode ser vazio `,
+        "any.required": `"Email" campo obrigatório`,
+        "string.email": `"Email" isso não é um email`,
       }),
-      senha: Joi.string().min(4).max(12).empty().required().messages({
-        
-        "string.empty": `"nome" não pode ser vazio`,
-        "any.required": `"email" é obrigatório`,
+      senha: Joi.string().empty().required().min(4).max(10).messages({
+        "string.empty": `"Senha" não pode ser vazia`,
+        "any.required": `"Senha" campo obrigatório`,
+        "string.min": `"Senha" no mínimo 4 carateres`,
+        "string.max": `"Senha" no máximo 10 caracteres`,
       }),
-      status: Joi.number().integer().max(2).empty().required().messages({
-        "string.empty": `"status" não pode ser vazio`,
-        "any.required": `"status" é obrigatório`,
+      status: Joi.number().empty().required().min(1).max(2).messages({
+        "number.empty": `"Status" não pode ser vazio`,
+        "any.required": `"Status" campo obrigatório`,
+        "number.max": `"Status" este campo só aceita uma caractere número `,
       }),
     });
-
-    const { error } = cad.validate(req.body);
+    const { error } = authSchema.validate(req.body, { abortEarly: false });
     if (error) {
-      console.log(error);
       throw Error(error);
     }
-
     return next();
   } catch (error) {
-    res.status(error.status || 500).send({ message: error.message });
+    res.status(error.status || 500).send({ error: error.message });
   }
 }
 
-module.exports = cadValidation;
+module.exports = ValidadeCad;
