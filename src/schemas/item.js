@@ -1,8 +1,10 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/configDataBase");
 
-const item = sequelize.define(
-  "item",
+
+
+const items = sequelize.define(
+  "items",
   {
     idItem: {
       primaryKey: true,
@@ -10,16 +12,22 @@ const item = sequelize.define(
       type: DataTypes.INTEGER,
     },
     idPedido: {
+      foreignKey: true, 
       type: DataTypes.INTEGER,
     },
     idProduto: {
+      foreignKey: true,
       type: DataTypes.STRING,
     },
     quantidade: {
       type: DataTypes.INTEGER,
     },
+    total: {
+      type: DataTypes.FLOAT,
+    }
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
-module.exports = item;
+
+module.exports = items;

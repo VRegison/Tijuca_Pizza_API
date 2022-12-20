@@ -6,17 +6,15 @@ const pedidos = sequelize.define(
   {
     idPedido: {
       primaryKey: true,
+      autoIncrement: true,
       allowNull: true,
       type: DataTypes.INTEGER,
     },
     idUser: {
       type: DataTypes.INTEGER,
     },
-    mesa: {
+    idMesa: {
       type: DataTypes.INTEGER,
-    },
-    total: {
-      type: DataTypes.FLOAT,
     },
     statusPedidos: {
       type: DataTypes.INTEGER,
@@ -29,7 +27,9 @@ const pedidos = sequelize.define(
       type: DataTypes.TEXT,
     },
   },
-  { timestamps: false }
+  { timestamps: false },
 );  
+
+
 
 module.exports = pedidos;
