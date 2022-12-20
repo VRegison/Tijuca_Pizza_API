@@ -1,18 +1,21 @@
 const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const router = Router();
-const User = require("../config/configDataBase");
-const SECRET = require('dotenv').config()
+
+
+//Var pedidos 
+const {listarPedido, createPedido } = require("../controllers/pedidos")
 
 
 //VAR user rotas
 const cadValidation = require("../../validations/cad");
 const loginValidation = require("../../validations/login");
 const Login = require("../controllers/login");
-const Create = require("../controllers/cadastro");
+const {CreateUser} = require("../controllers/cadastro");
 
 //VAR produto rotas
 const { createProduto, listOneProd, updateProduto, listarProduto } = require("../controllers/produtos");
+const prodValidation = require ("../../validations/prod")
 
 //VAR categoria rotas
 const { createCategory, deleteCategory, listCategory } = require("../controllers/categoria")
@@ -23,12 +26,12 @@ const mesaValidation = require("../../validations/mesa");
 
 //User
 router.post("/login", loginValidation, Login);
-router.post("/create", cadValidation, Create);
+router.post("/create", cadValidation, CreateUser);
 
 //Produtos
 router.get("/listarProduto/:idProduto", listOneProd)
 router.get("/listarProdutos", listarProduto);
-router.post("/createProdutos", createProduto);
+router.post("/createProdutos",prodValidation, createProduto);
 router.patch("/updateProdutos/:id", updateProduto);
 
 //Categoria
@@ -41,10 +44,9 @@ router.post("/createMesa", mesaValidation, createMesa)
 router.patch("/updateMesa/:id",mesaValidation, updateMesa)
 router.get ("/listarMesas", listMesa)
 
+//pedidos
+router.get("/listPedido", listarPedido)
+router.post("/createPedido", createPedido)
 
-//Pedidos rotas
-// router.post("/createPedidos", createPedido);
-// router.get("/listarPedidos", listarPedido);
-// router.patch("/updatePedidos/:id", updatePed);
 
 module.exports = router;

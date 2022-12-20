@@ -1,10 +1,10 @@
-const user = require("../schemas/user");
+const User = require("../schemas/user");
 
 //Cria usuário
 
-exports.CreateUser = async ({ nomeUser, email, senha, status }) => {
+exports.createUser = async ({ nomeUser, email, senha, status }) => {
 
-  const create = await user.create({
+  const create = await User.create({
     nomeUser: nomeUser,
     email: email,
     senha: senha,
@@ -13,5 +13,5 @@ exports.CreateUser = async ({ nomeUser, email, senha, status }) => {
   return create;
 };
 
-//validação do status
+
 

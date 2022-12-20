@@ -1,7 +1,7 @@
-const CreateUser = require("../services/cad.service");
-const {FindEmail, FindUser} = require("../services/user.service")
+const {createUser} = require("../services/cad.service");
+const {FindEmail} = require("../services/user.service")
 
-async function Create(req, res, next) {
+exports.CreateUser = async (req, res, next) => {
   try {
     
     const user = await FindEmail(req.body.email)
@@ -12,13 +12,13 @@ async function Create(req, res, next) {
       next;
     } else {
 
-      const create = await CreateUser(req.body);
+      const create = await createUser(req.body);
       res.status(201).send({ message: "Usuário criado com sucesso" });
-    }
+    };
 
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }
-}
+};
 
-module.exports = Create;
+

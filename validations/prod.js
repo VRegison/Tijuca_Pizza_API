@@ -13,20 +13,18 @@ async function ValidadeProd(req, res, next) {
         "string.empty": `"Nome" não pode ser vazia`,
         "any.required": `"Nome" campo obrigatório`,
       }),
-      valor: Joi.number().empty().required().min(1).max(2).messages({
-        "string.empty": `"Valor" não pode ser vazia`,
+      valor: Joi.number().empty().required().min(2).max(4).messages({
+        "number.empty": `"Valor" não pode ser vazio`,
         "any.required": `"Valor" campo obrigatório`,
-        "number.min": `"Valor"  só recebe o caracteres 1 ou 2`,
-        "number.max": `"Valor" só recebe o caracteres 1 ou 2`,
       }),
-      descricao: Joi.number().empty().required().min(1).max(2).messages({
+      descricao: Joi.string().empty().required().min(20).max(200).messages({
         "string.empty": `"Descrição" não pode ser vazia`,
-        "any.required": `"StaDescriçãotus" campo obrigatório`,
-        "number.min": `"Descrição"  só recebe o caracteres 1 ou 2`,
-        "number.max": `"Descrição" só recebe o caracteres 1 ou 2`,
+        "any.required": `"Descrição" campo obrigatório`,
+        "string.min": `"Descrição"  no mínimo 20 caracteres`,
+        "string.max": `"Descrição" no máximo 200 caracteres`,
       }),
       statusProduto: Joi.number().empty().required().min(1).max(2).messages({
-        "string.empty": `"Status" não pode ser vazia`,
+        "number.empty": `"Status" não pode ser vazia`,
         "any.required": `"Status" campo obrigatório`,
         "number.min": `"Status"  só recebe o caracteres 1 ou 2`,
         "number.max": `"Status" só recebe o caracteres 1 ou 2`,
