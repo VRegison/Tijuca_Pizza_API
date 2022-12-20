@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken");
 const { createPed, listPed, updatePed } = require("../services/ped.service");
 
 exports.createPedido = async (req, res, next) => {

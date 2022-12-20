@@ -1,13 +1,13 @@
-const jwt = require("jsonwebtoken");
 const { Router } = require("express");
 const router = Router();
 const User = require("../config/configDataBase");
 const SECRET = require("dotenv").config();
+const verifyToken = require("../../validations/token.validation");
 
 //cadastro e login rotas
 const loginValidation = require("../../validations/login");
-const Login = require("../controllers/login");
-const Create = require("../controllers/cadastro");
+const cadValidation = require("../../validations/cad")
+const { Create, Login } = require("../controllers/users")
 
 router.post("/login", loginValidation, Login);
 router.post("/create", cadValidation, Create);
@@ -17,11 +17,11 @@ const {
   createProduto,
   listarProduto,
   updateProduto,
+  listOneProd,
 } = require("../controllers/produtos");
-const verifyToken = require("../../validations/token.validation");
 
 router.post("/createProdutos", verifyToken, createProduto);
-router.get("/listarProdutos", verifyToken, listarProduto);
+router.get("/listarProdutos", listarProduto);
 router.patch("/updateProdutos/:id", verifyToken, updateProduto);
 router.get("/listarProduto/:idProduto", listOneProd);
 
@@ -30,7 +30,6 @@ const {
   createPedido,
   listarPedido,
   updatePed,
-  listOneProd,
 } = require("../controllers/pedidos");
 
 router.post("/createPedidos", createPedido);
@@ -44,21 +43,16 @@ const {
   listCategory,
 } = require("../controllers/categoria");
 
-router.post("/cadastrarCategoria", createCategory);
-router.get("/listarCategorias", listCategory);
-router.delete("/deletarCategoria/:idCategoria", deleteCategory);
+router.post("/cadastrarCategoria", verifyToken, createCategory);
+router.get("/listarCategorias", verifyToken, listCategory);
+router.delete("/deletarCategoria/:idCategoria", verifyToken, deleteCategory);
 
 //Rotas Mesas
 const { createMesa, updateMesa, listMesa } = require("../controllers/mesa");
 const mesaValidation = require("../../validations/mesa");
 
-router.post("/createMesa", mesaValidation, createMesa);
-router.patch("/updateMesa/:id", mesaValidation, updateMesa);
-router.get("/listarMesas", listMesa);
-
-//Pedidos rotas
-// router.post("/createPedidos", createPedido);
-// router.get("/listarPedidos", listarPedido);
-// router.patch("/updatePedidos/:id", updatePed);
+router.post("/createMesa", verifyToken, mesaValidation, createMesa);
+router.patch("/updateMesa/:id", verifyToken, mesaValidation, updateMesa);
+router.get("/listarMesas", verifyToken, listMesa);
 
 module.exports = router;

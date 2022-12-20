@@ -12,7 +12,7 @@ async function ValidadeCad(req, res, next) {
       email: Joi.string().empty().required().email().messages({
         "string.empty": `"Email" não pode ser vazio `,
         "any.required": `"Email" campo obrigatório`,
-        "string.email": `"Email" isso não é um email animal `,
+        "string.email": `"Email" isso não é um email`,
       }),
       senha: Joi.string().empty().required().min(4).max(10).messages({
         "string.empty": `"Senha" não pode ser vazia`,
