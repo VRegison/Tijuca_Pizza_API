@@ -1,8 +1,10 @@
-const { createPed, listPed, updatePed } = require("../services/ped.service");
+const jwt = require("jsonwebtoken");
+const { createPed, listPedido, updatePed } = require("../services/ped.service");
 
 exports.createPedido = async (req, res, next) => {
   try {
     const createPedido = await createPed(req.body);
+   
     res.status(201).send({ message: "Pedido criado com sucesso" });
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
@@ -11,9 +13,9 @@ exports.createPedido = async (req, res, next) => {
 
 exports.listarPedido = async (req, res, next) => {
   try {
-    const response = await listPed();
+    const response = await listPedido();
 
-    res.status(200).send({ pedidos : response });
+    res.status(200).send({ item : response  });
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }

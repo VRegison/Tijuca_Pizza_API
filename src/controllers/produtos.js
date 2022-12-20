@@ -3,14 +3,24 @@ const {
   updateProd,
   listProd,
   listOneProd,
+  findNome
 } = require("../services/prod.service");
 
 //produtos
 
 exports.createProduto = async (req, res, next) => {
   try {
-    const createProduto = await createProd(req.body);
-    res.status(201).send(createProd);
+    const product = await findNome(req.body.nomeProduto)
+    console.log(req.body.nomeProduto, "nomeProduto")
+
+    if (product) {
+      res.status(400).send({ message: "produto já cadastrado" })
+    } else {
+      
+      const createProduto = await createProd(req.body);
+      res.status(201).send({message: "produto cadastrado com sucesso"});
+    }
+
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }

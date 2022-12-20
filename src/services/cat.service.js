@@ -1,4 +1,5 @@
 const categoria = require("../schemas/categoria");
+const { FindUser } = require("./user.service");
 
 //criar categorias
 
@@ -25,4 +26,15 @@ exports.listCat = async () => {
 exports.deleteCat = async (idCategoria) => {
   var id =  categoria.destroy({ where: { idCategoria:idCategoria } });
   return id
-};
+};  
+
+//sem repetição
+
+exports.FindNome = async (nomeCategoria) => {
+
+    const findNome = await categoria.findOne({
+      where: {nomeCategoria: nomeCategoria}, 
+    });
+    console.log(findNome, "findNome")
+    return findNome;
+  }

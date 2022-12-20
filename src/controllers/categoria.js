@@ -1,13 +1,24 @@
 const categoria = require("../schemas/categoria");
-const { createCat, listCat, deleteCat } = require("../services/cat.service");
+const { createCat, listCat, deleteCat, FindNome } = require("../services/cat.service");
 
 //categoria
 
 exports.createCategory = async (req, res, next) => {
   try {
-    console.log("categoria criado");
-    const createCategory = await createCat(req.body);
-    res.status(201).send({ message: "Categoria criada com sucesso" });
+    const category = await FindNome(req.body.nomeCategoria)
+    console.log(req.body.nomeCategoria, "nomeCategoria")
+    if (category) {
+      res.status(400).send({ message: "categoria  já cadastrada" })
+    } else {
+      
+      const createCategory = await createCat(req.body);
+      res.status(201).send({ message: "categoria criada com sucesso" });
+      
+    }
+
+
+
+
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }

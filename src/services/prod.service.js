@@ -48,5 +48,16 @@ exports.listOneProd = async (idProduto) => {
    
 };
 
+//sem repeticão
+
+exports.findNome = async (nomeProduto) => {
+
+  const findNome = await produto.findOne({
+    where: {nomeProduto: nomeProduto}, 
+  });
+  console.log(findNome, "findNome")
+  return findNome;
+}
+
 
 
