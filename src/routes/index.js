@@ -32,12 +32,6 @@ const {
   updatePed,
 } = require("../controllers/pedidos");
 
-//produto
-const { createProduto } = require("../controllers/produtos");
-const { listarProduto } = require("../controllers/produtos");
-const { updateProduto } = require("../controllers/produtos");
-const verifyToken = require("../../validations/token.validation");
-
 //User
 router.post("/login", loginValidation, Login);
 router.post("/create", cadValidation, Create);

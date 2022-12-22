@@ -13,7 +13,7 @@ async function login(req, res, next) {
       return res.status(200).send(response);
     }
   } catch (error) {
-    res.status(error.status || 500).send({ message: error.message });
+    res.status(error.status  || 500).send({ message: error.message });
     console.log("deu errado");
   }
 }
