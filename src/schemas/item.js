@@ -8,6 +8,7 @@ const items = sequelize.define(
   {
     idItem: {
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
       type: DataTypes.INTEGER,
     },
@@ -24,6 +25,9 @@ const items = sequelize.define(
     },
     total: {
       type: DataTypes.FLOAT,
+    },
+    observacao: {
+      type:DataTypes.TEXT,
     }
   },
   { timestamps: false }

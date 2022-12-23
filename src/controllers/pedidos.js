@@ -1,16 +1,20 @@
-const jwt = require("jsonwebtoken");
+//pedidos
 const { createPed, listPedido, updatePed } = require("../services/ped.service");
 
+
+///criação de pedido
 exports.createPedido = async (req, res, next) => {
   try {
     const createPedido = await createPed(req.body);
    
-    res.status(201).send({ message: "Pedido criado com sucesso" });
+    res.status(201).send(createPedido);
+    
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }
 };
 
+//listagem dos detalhes do pedido
 exports.listarPedido = async (req, res, next) => {
   try {
     const response = await listPedido();
@@ -21,6 +25,7 @@ exports.listarPedido = async (req, res, next) => {
   }
 };
 
+//edição infos de pedido
 exports.updatePed = async (req, res, next) => {
   try {
     const { id } = req.params;
