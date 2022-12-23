@@ -32,9 +32,9 @@ const {
   updatePed,
 } = require("../controllers/pedidos");
 
-router.post("/createPedidos", createPedido);
-router.get("/listarPedidos", listarPedido);
-router.patch("/updatePedidos/:id", updatePed);
+router.post("/createPedidos", verifyToken,createPedido);
+router.get("/listarPedidos", verifyToken, listarPedido);
+router.patch("/updatePedidos/:id", verifyToken,updatePed);
 
 //Rotas Categoria
 const {
@@ -51,8 +51,8 @@ router.delete("/deletarCategoria/:idCategoria", verifyToken, deleteCategory);
 const { createMesa, updateMesa, listMesa } = require("../controllers/mesa");
 const mesaValidation = require("../../validations/mesa");
 
-router.post("/createMesa", verifyToken, mesaValidation, createMesa);
-router.patch("/updateMesa/:id", verifyToken, mesaValidation, updateMesa);
+router.post("/createMesa", verifyToken, mesaValidation, createMesa);//desktop
+router.patch("/updateMesa/:id", verifyToken, mesaValidation, updateMesa);// desktop
 router.get("/listarMesas", verifyToken, listMesa);
 
 module.exports = router;

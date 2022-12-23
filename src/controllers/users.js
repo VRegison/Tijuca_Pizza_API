@@ -6,7 +6,7 @@ require("dotenv").config()
 
 exports.Create = async(req, res, next) =>{
   try {
-    const user = await FindEmail(req.body.email);
+    const user = await FindEmail(req.body.email); 
     console.log(req.body.email, "email");
 
     if (user) {

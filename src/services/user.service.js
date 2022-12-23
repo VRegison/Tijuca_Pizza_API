@@ -22,7 +22,7 @@ exports.FindUser = async ({ email, senha }) => {
   });
   const token = await TokenServices.gerarToken({ findUser });
 
-  return { user:{ email: findUser.email, id: findUser.idUser}, token };
+  return { user:{ email: findUser.email, id: findUser.idUser, status: findUser.status}, token };
 };
 
 exports.FindEmail = async (email) => {

@@ -27,6 +27,11 @@ exports.createPed = async ({
     data: newDate(),
     observacao: observacao,
   });
+
+  const createItem = await item.create({
+    quantidade
+  });
+
   console.log(createPed)
   return createPed;
 };
