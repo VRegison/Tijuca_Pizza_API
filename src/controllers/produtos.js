@@ -5,22 +5,27 @@ const {
   listOneProd,
   findNome
 } = require("../services/prod.service");
-
+const User = require("../schemas/user")
 //produtos
 
 exports.createProduto = async (req, res, next) => {
   try {
-    const product = await findNome(req.body.nomeProduto)
-    console.log(req.body.nomeProduto, "nomeProduto")
+    var verify = await new User(req.headers.status)
+    if(verify == 1){
+      const product = await findNome(req.body.nomeProduto)
+      console.log(req.body.nomeProduto, "nomeProduto")
 
-    if (product) {
+      if (product) {
       res.status(400).send({ message: "produto já cadastrado" })
-    } else {
+      } else {
       
       const createProduto = await createProd(req.body);
       res.status(201).send({message: "produto cadastrado com sucesso"});
+      }
+    }else{
+      res.status(400).send({ message: "seu usuário não tem permissão para cadastrar produtos" })
     }
-
+    
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }
