@@ -3,11 +3,11 @@ const Joi = require("joi");
 async function ValidadeCad(req, res, next) {
   try {
     const authSchema = Joi.object({
-      nomeUser: Joi.string().empty().required().min(4).max(12).messages({
+      nomeUser: Joi.string().empty().required().min(4).max(30).messages({
         "string.empty": `"Nome" não pode ser vazio`,
         "any.required": `"Nome" campo obrigatório`,
         "string.min": `"Nome" no mínimo 4 carateres`,
-        "string.max": `"Nome" no máximo 12 caracteres`,
+        "string.max": `"Nome" no máximo 30 caracteres`,
       }),
       email: Joi.string().empty().required().email().messages({
         "string.empty": `"Email" não pode ser vazio `,

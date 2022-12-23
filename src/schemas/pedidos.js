@@ -22,10 +22,7 @@ const pedidos = sequelize.define(
     data: {
       allowNull: true,
       type: DataTypes.DATE,
-    },
-    observacao: {
-      type: DataTypes.TEXT,
-    },
+    }
   },
   { timestamps: false },
 );  
