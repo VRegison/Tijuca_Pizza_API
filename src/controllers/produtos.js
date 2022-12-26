@@ -3,33 +3,20 @@ const {
   updateProd,
   listProd,
   listOneProd,
-  findNome
+  findNome,
 } = require("../services/prod.service");
-const User = require("../schemas/user")
+const User = require("../schemas/user");
+
 //produtos
 
-exports.createProduto = async (req, res, next) => {
+exports.createProduto = async (req, res) => {
   try {
-    var verify = await new User(req.headers.status)
-    if(verify == 1){
-      const product = await findNome(req.body.nomeProduto)
-      console.log(req.body.nomeProduto, "nomeProduto")
-
-      if (product) {
-      res.status(400).send({ message: "produto já cadastrado" })
-      } else {
-      
-      const createProduto = await createProd(req.body);
-      res.status(201).send({message: "produto cadastrado com sucesso"});
-      }
-    }else{
-      res.status(400).send({ message: "seu usuário não tem permissão para cadastrar produtos" })
-    }
-    
+    const { status } = req.infoToken;
+    const product = await createProd(status, req.body);
+    res.status(201).send(product);
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }
-  next();
 };
 
 exports.listarProduto = async (req, res, next) => {
@@ -42,14 +29,18 @@ exports.listarProduto = async (req, res, next) => {
   }
 };
 
-exports.updateProduto = async (req, res, next) => {
+exports.updateProduto = async (req, res) => {
   try {
-    const { id } = req.params;
-    const response = await updateProd(id, req.body);
-    res.status(200).send({ message: "Produto editado com sucesso" });
-    console.log(response);
+    const { id } =  req.params;
+    const { status } =  req.infoToken;
+    const response = await updateProd( id, status, req.body );
+    if (response == false){
+      res.status(401).send({ message: "Você não tem permissão para executar essa ação" });
+    }
+
+    res.status(200).send({response, message: "Produto editado com sucesso"});
   } catch (error) {
-    res.status(error.status || 500).send({ message: error.message });
+      res.status(error.status || 500).send({ message: error.message });
   }
 };
 

@@ -30,6 +30,4 @@ const pedidos = sequelize.define(
   { timestamps: false },
 );  
 
-
-
 module.exports = pedidos;

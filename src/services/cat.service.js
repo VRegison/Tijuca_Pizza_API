@@ -5,11 +5,9 @@ const { FindUser } = require("./user.service");
 
 exports.createCat = async ({
   nomeCategoria,
-
 }) => {
   const createCat = await categoria.create({
     nomeCategoria: nomeCategoria,
-
   });
   return createCat;
 };
@@ -31,7 +29,6 @@ exports.deleteCat = async (idCategoria) => {
 //sem repetição
 
 exports.FindNome = async (nomeCategoria) => {
-
     const findNome = await categoria.findOne({
       where: {nomeCategoria: nomeCategoria}, 
     });

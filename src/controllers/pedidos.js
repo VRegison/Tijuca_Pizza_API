@@ -4,7 +4,6 @@ const { createPed, listPedido, updatePed } = require("../services/ped.service");
 exports.createPedido = async (req, res, next) => {
   try {
     const createPedido = await createPed(req.body);
-   
     res.status(201).send({ message: "Pedido criado com sucesso" });
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });

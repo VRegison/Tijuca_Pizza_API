@@ -2,11 +2,11 @@ const { verify } = require("jsonwebtoken");
 require("dotenv").config();
 
 async function verifyToken(req, res, next) {
-  var token = req.headers.authorization?.split(" ")[1];
+  var token = req.headers.authorization.split(" ")[1];
 
   try {
     if (token) {
-      req.infoToken = await verify(token, process.env.SECRET);
+      req.infoToken = verify(token, process.env.SECRET);
     return next();
     } else {
       res.status(403).json({ message: "Por favor inserir token" });
