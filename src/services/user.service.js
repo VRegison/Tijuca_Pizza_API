@@ -1,5 +1,6 @@
 const User = require("../schemas/user");
 const TokenServices = require("./token/token");
+const { sign } = require("jsonwebtoken");
 
 //Cria usuário
 
@@ -21,9 +22,9 @@ exports.FindUser = async ({ email, senha }) => {
     where: { email: email, senha: senha },
   });
   const token = await TokenServices.gerarToken({ findUser });
-
   return { user:{ email: findUser.email, id: findUser.idUser}, token };
 };
+
 
 exports.FindEmail = async (email) => {
   console.log(email, "email");

@@ -32,7 +32,7 @@ exports.Login = async(req, res, next) =>{
       return res.status(200).send({
         message: "user encontrado",
         user: response.idUser,
-        token: jwt.sign({ idUser: response.idUser }, process.env.SECRET, { expiresIn: 300 }),
+        token: jwt.sign({ idUser: response.idUser }, process.env.SECRET, { expiresIn: 900 }),
       });
     }
   } catch (error) {
