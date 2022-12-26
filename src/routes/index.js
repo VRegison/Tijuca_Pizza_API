@@ -36,6 +36,13 @@ router.post("/createPedidos", verifyToken,createPedido);
 router.get("/listarPedidos", verifyToken, listarPedido);
 router.patch("/updatePedidos/:id", verifyToken,updatePed);
 
+//items 
+const { criacaoItem, edicaoItem } = require("../controllers/item")
+const itemValidation = require ("../../validations/item")
+
+router.post("/createItem", itemValidation, criacaoItem)
+router.patch("/updateItem/:id", edicaoItem)
+
 //Rotas Categoria
 const {
   createCategory,
@@ -53,6 +60,6 @@ const mesaValidation = require("../../validations/mesa");
 
 router.post("/createMesa", verifyToken, mesaValidation, createMesa);//desktop
 router.patch("/updateMesa/:id", verifyToken, mesaValidation, updateMesa);// desktop
-router.get("/listarMesas", verifyToken, listMesa);
-
+router.get("/listarMesas", verifyToken,listMesa);
+  
 module.exports = router;

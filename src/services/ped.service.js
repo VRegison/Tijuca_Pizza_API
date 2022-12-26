@@ -22,7 +22,7 @@ exports.createPed = async ({
     idUser: idUser,
     idMesa: idMesa,
     statusPedidos: statusPedidos,
-    data: newDate(),
+    data: newDate(),  
   });
 
   const createItem = await item.create({

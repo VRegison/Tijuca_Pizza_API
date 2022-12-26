@@ -29,7 +29,7 @@ module.exports.updateM = async (
 //listar por status
 exports.listMesa = async () => {
 
-  const listMesa = await mesa.findAll({ where: {statusMesa: 1},});
+  const listMesa = await mesa.findAll({ where: {statusMesa: 1}});
   return listMesa;
 
 };
