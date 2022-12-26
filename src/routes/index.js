@@ -37,11 +37,7 @@ router.get("/listarPedidos", listarPedido);
 router.patch("/updatePedidos/:id", updatePed);
 
 //Rotas Categoria
-const {
-  createCategory,
-  deleteCategory,
-  listCategory,
-} = require("../controllers/categoria");
+const {createCategory, deleteCategory, listCategory} = require("../controllers/categoria");
 
 router.post("/cadastrarCategoria", verifyToken, createCategory);
 router.get("/listarCategorias", verifyToken, listCategory);

@@ -30,7 +30,7 @@ exports.createPed = async ({
 
 //listar o join da tabela pedidos com item
 exports.listPedido = async () => {
-  const listPed = await sequelize.query("SELECT p.idPedido, idUser, idMesa, statusPedidos, data, s.nomeProduto, i.quantidade, total, observacao FROM `pedidos` as p JOIN `items` as i on p.idPedido = i.idPedido JOIN `produtos` as s on i.idProduto = s.idProduto", { type: QueryTypes.SELECT });
+  const listPed = await sequelize.query("SELECT p.idPedido, idUser, idMesa, data, s.nomeProduto, i.quantidade, p.statusPedidos, observacao, totalItem, p.totalPedido FROM `pedidos` as p JOIN `items` as i on p.idPedido = i.idPedido JOIN `produtos` as s on i.idProduto = s.idProduto", { type: QueryTypes.SELECT });
   return listPed;
 };
 
