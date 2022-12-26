@@ -14,11 +14,15 @@ async function login(req, res, next) {
     }
   } catch (error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     res.status(error.status  || 500).send({ message: error.message });
     console.log("deu errado");
 =======
     res.status(error.status || 500).send({ message: error.message });
 >>>>>>> c84a7006434e604e045329e2375ba00eb071db79
+=======
+    res.status(error.status || 500).send({ message: error.message });
+>>>>>>> 3b024acf6c9b55a3d9efc16787b8d1cfebd0542c
   }
 }
 

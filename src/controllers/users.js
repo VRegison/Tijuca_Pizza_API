@@ -1,10 +1,10 @@
 const { CreateUser } = require("../services/user.service");
-const User = require("../schemas/user")
+const User = require("../schemas/user");
 const { FindEmail, FindUser } = require("../services/user.service");
-const jwt = require("jsonwebtoken")
-require("dotenv").config()
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-exports.Create = async(req, res, next) =>{
+exports.Create = async (req, res, next) => {
   try {
     const user = await FindEmail(req.body.email);
     console.log(req.body.email, "email");
@@ -19,14 +19,12 @@ exports.Create = async(req, res, next) =>{
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }
-}
+};
 
-exports.Login = async(req, res, next) =>{
+exports.Login = async (req, res, next) => {
   try {
     const response = await FindUser(req.body);
-    console.log(response);
     if (response == null) {
-
       return res.status(401).send({ message: "não encontrado" });
     } else {
       return res.status(200).send({
@@ -39,4 +37,4 @@ exports.Login = async(req, res, next) =>{
     res.status(error.status || 500).send({ message: error.message });
     console.log("deu errado");
   }
-}
+};
