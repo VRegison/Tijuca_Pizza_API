@@ -9,21 +9,15 @@ const sequelize = new Sequelize(
     dialect: "mysql",
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-  },
-
+  }
 );
 
 async function Conection() {
   try {
     await sequelize.authenticate();
     console.log("Banco conectado");
-
-
-
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 }
-
-
 (module.exports = sequelize), Conection();

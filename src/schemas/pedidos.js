@@ -22,6 +22,10 @@ const pedidos = sequelize.define(
     data: {
       allowNull: true,
       type: DataTypes.DATE,
+    },
+    totalPedido: {
+      defaultValue: 0,
+      type: DataTypes.FLOAT, 
     }
   },
   { timestamps: false },

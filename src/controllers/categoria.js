@@ -44,7 +44,7 @@ exports.deleteCategory = async (req, res, next) => {
     if (response == 0) {
       res.status(404).send({ message: "Categoria não encontrada" })
     } else {
-      res.status(200).send({ message: "Categoria excluida com sucesso" })
+      res.status(200).send({ message: "Categoria excluída com sucesso" })
     }
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
