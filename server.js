@@ -3,14 +3,12 @@ const router = require("./src/routes")
 const sequelize = require("./src/config/configDataBase");
 const app = express()
 const cors = require('cors')
-
 const port = 4000
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(router)
-
 
 app.listen(
   port,
@@ -19,4 +17,3 @@ app.listen(
     DB: sequelize.config.host,
   })
 );
-

@@ -5,7 +5,6 @@ const { sign } = require("jsonwebtoken");
 //Cria usuário
 
 exports.CreateUser = async ({ nomeUser, email, senha, status }) => {
-
   const create = await User.create({
     nomeUser: nomeUser,
     email: email,
@@ -21,9 +20,19 @@ exports.FindUser = async ({ email, senha }) => {
   const findUser = await User.findOne({
     where: { email: email, senha: senha },
   });
-  const token = await TokenServices.gerarToken({ findUser });
-
-  return { user:{ email: findUser.email, id: findUser.idUser, status: findUser.status}, token };
+  const token = await TokenServices.gerarToken({
+    id: findUser.idUser,
+    status: findUser.status,
+  });
+  return {
+    user: {
+      nomeUser: findUser.nomeUser,
+      email: findUser.email,
+      id: findUser.idUser,
+      status: findUser.status,
+    },
+    token,
+  };
 };
 
 

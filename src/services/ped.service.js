@@ -28,7 +28,6 @@ exports.createPed = async ({
   const createItem = await item.create({
     quantidade
   });
-
   console.log(createPed)
   return createPed;
 };

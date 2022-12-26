@@ -1,8 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/configDataBase");
 
-
-
 const items = sequelize.define(
   "items",
   {
@@ -33,6 +31,5 @@ const items = sequelize.define(
   },
   { timestamps: false }
 );
-
 
 module.exports = items;

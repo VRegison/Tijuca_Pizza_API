@@ -2,7 +2,7 @@ const {Sequelize, DataTypes} = require ("sequelize")
 const sequelize = require("../config/configDataBase")
 
 const produto = sequelize.define(
-    "produto",
+    "produtos",
   {
     idProduto: {
       primaryKey: true,

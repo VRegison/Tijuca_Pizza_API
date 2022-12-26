@@ -32,9 +32,19 @@ const {
   updatePed,
 } = require("../controllers/pedidos");
 
-router.post("/createPedidos", verifyToken,createPedido);
-router.get("/listarPedidos", verifyToken, listarPedido);
-router.patch("/updatePedidos/:id", verifyToken,updatePed);
+//User
+router.post("/login", loginValidation, Login);
+router.post("/create", cadValidation, Create);
+
+//Produtos
+router.post("/createProdutos", verifyToken, createProduto);
+router.get("/listarProdutos", verifyToken, listarProduto);
+router.patch("/updateProdutos/:id", verifyToken, updateProduto);
+
+//Pedidos rotas
+router.post("/createPedidos", createPedido);
+router.get("/listarPedidos", listarPedido);
+router.patch("/updatePedidos/:id", updatePed);
 
 //items 
 const { criacaoItem, edicaoItem } = require("../controllers/item")
