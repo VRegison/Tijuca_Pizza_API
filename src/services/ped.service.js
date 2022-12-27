@@ -2,6 +2,7 @@ const pedidos = require("../schemas/pedidos");
 const sequelize = require("../config/configDataBase")
 const {QueryTypes} = require('sequelize')
 
+
 //Formatação de data
 function newDate() {
   var date = new Date();
@@ -25,9 +26,6 @@ exports.createPed = async ({
     data: newDate(),  
   });
 
-  const createItem = await item.create({
-    quantidade
-  });
   console.log(createPed)
   return createPed;
 };
@@ -46,7 +44,7 @@ exports.updatePed = async (
   const updatePed = pedidos.update(
     {
       idUser: idUser,
-      idmMesa: idMesa,
+      idMesa: idMesa,
       statusPedidos: statusPedidos,
     },
     { where: { idPedido: id } }

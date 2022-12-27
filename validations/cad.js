@@ -9,7 +9,7 @@ async function ValidadeCad(req, res, next) {
         "string.min": `"Nome" no mínimo 4 carateres`,
         "string.max": `"Nome" no máximo 30 caracteres`,
       }),
-      email: Joi.string().empty().required().email().messages({
+      email: Joi.string().email().empty().required().messages({
         "string.empty": `"Email" não pode ser vazio `,
         "any.required": `"Email" campo obrigatório`,
         "string.email": `"Email" isso não é um email`,
@@ -28,6 +28,7 @@ async function ValidadeCad(req, res, next) {
     });
     const { error } = authSchema.validate(req.body, { abortEarly: false });
     if (error) {
+      console.log(error)
       throw Error(error);
     }
     return next();
