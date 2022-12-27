@@ -9,7 +9,7 @@ exports.createMesa = async (
       statusMesa: statusMesa,
     });
     return create;
-  } if (status == 2){
+  } else {
     return false;
   }
 };

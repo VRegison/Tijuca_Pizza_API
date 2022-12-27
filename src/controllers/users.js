@@ -29,12 +29,11 @@ exports.Login = async (req, res, next) => {
     } else {
       return res.status(200).send({
         message: "user encontrado",
-        user: response.idUser,
-        token: jwt.sign({ idUser: response.idUser }, process.env.SECRET, { expiresIn: 900 }),
+        idUser: response,
       });
     }
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
-    console.log("deu errado");
+
   }
 };

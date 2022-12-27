@@ -30,7 +30,7 @@ exports.updatePed = async (req, res, next) => {
   try {
     const { id } = req.params;
     const response = await updatePed(id, req.body);
-    res.status(200).send({message: "Pedido editado com sucesso"});
+    res.status(200).send({response, message: "Pedido editado com sucesso"});
   } catch (error) {
     res.status(error.status || 500).send({ message: error.message });
   }

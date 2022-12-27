@@ -22,7 +22,7 @@ const items = sequelize.define(
       type: DataTypes.INTEGER,
     },
     totalItem: {
-      defaultValue: 0,
+      // defaultValue: 0,
       type: DataTypes.FLOAT,
     },
     observacao: {

@@ -2,13 +2,13 @@ const items =  require ("../schemas/item")
 
 // acrescentar dados na tabela item
 
-exports.createItem = async ({ idPedido, idProduto, quantidade, total, observacao }) => {
+exports.createItem = async ({ idPedido, idProduto, quantidade, totalItem, observacao }) => {
  
     const createItem = await items.create({
         idPedido: idPedido,
         idProduto: idProduto,
         quantidade: quantidade,
-        total: total,
+        totalItem: totalItem,
         observacao: observacao,
     });
     console.log(createItem)
@@ -19,7 +19,7 @@ exports.createItem = async ({ idPedido, idProduto, quantidade, total, observacao
 
 exports.updateItem = async (
     id,
-    {idPedido, idProduto, quantidade, total, observacao}
+    {idPedido, idProduto, quantidade, totalItem, observacao}
 
     ) => {
 
@@ -28,7 +28,7 @@ exports.updateItem = async (
         idPedido: idPedido,
         idProduto: idProduto,
         quantidade: quantidade,
-        total: total,
+        totalItem: totalItem,
         observacao: observacao,
     },
 

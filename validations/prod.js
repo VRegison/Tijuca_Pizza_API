@@ -13,7 +13,7 @@ async function ValidadeProd(req, res, next) {
         "string.empty": `"Nome" não pode ser vazia`,
         "any.required": `"Nome" campo obrigatório`,
       }),
-      valor: Joi.number().empty().required().min(2).max(4).messages({
+      valor: Joi.number().empty().required().messages({
         "number.empty": `"Valor" não pode ser vazio`,
         "any.required": `"Valor" campo obrigatório`,
       }),

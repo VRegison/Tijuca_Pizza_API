@@ -20,9 +20,9 @@ const {
 const prodValidation = require("../../validations/prod")
 
 router.post("/createProdutos", verifyToken, prodValidation, createProduto);
-router.get("/listarProdutos", listarProduto);
+router.get("/listarProdutos", verifyToken, listarProduto);
 router.patch("/updateProdutos/:id", verifyToken, updateProduto);
-router.get("/listarProduto/:idProduto", listOneProd);
+router.get("/listarProduto/:idProduto", verifyToken, listOneProd);
 
 //Rotas pedidos
 const {
@@ -32,16 +32,16 @@ const {
 } = require("../controllers/pedidos");
 const pedValidation = require("../../validations/ped")
 
-router.post("/createPedidos", pedValidation, createPedido);
-router.get("/listarPedidos", listarPedido);
-router.patch("/updatePedidos/:id", updatePed);
+router.post("/createPedidos", verifyToken, pedValidation, createPedido);
+router.get("/listarPedidos", verifyToken, listarPedido);
+router.patch("/updatePedidos/:id", verifyToken, updatePed);
 
 //items
 const { criacaoItem, edicaoItem } = require("../controllers/item");
 const itemValidation = require("../../validations/item");
 
-router.post("/createItem", itemValidation, criacaoItem);
-router.patch("/updateItem/:id", edicaoItem);
+router.post("/createItem",verifyToken, itemValidation, criacaoItem);
+router.patch("/updateItem/:id",verifyToken, edicaoItem);
 
 //Rotas Categoria
 const {
